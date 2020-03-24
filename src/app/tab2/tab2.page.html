@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Add Quote
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form>
+    <div class="basicInputForm">
+      <br>
+      <ion-label>Add Client</ion-label>
+      <br><br>
+      <ion-item>
+        <ion-label>Name:</ion-label>
+        <ion-input type="text" [(ngModel)]="cName" name="clientName"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label>Address:</ion-label>
+        <ion-input type="text" [(ngModel)]="cAddress" name="clientAddress"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label>City: </ion-label>
+        <ion-input type="text" [(ngModel)]="cCity" name="clientCity"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label>Phone Number:</ion-label>
+        <ion-input type="text" [(ngModel)]="cPhoneNum" name="clientPhoneNum"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label>Email:</ion-label>
+        <ion-input type="text" [(ngModel)]="cEmail" name="clientEmail"></ion-input>
+      </ion-item>
+      <br><br>
+      <p style="text-align: center;">Add Service will be added soon!</p>
+    </div>
+    <div id="saveBtn" style="text-align: center;">
+      <ion-button ion-button type="submit" block (click)="onSave()">Save</ion-button>
+    </div>
+  </form>
+</ion-content>
