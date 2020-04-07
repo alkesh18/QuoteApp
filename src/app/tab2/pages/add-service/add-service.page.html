@@ -1,0 +1,42 @@
+<ion-content>
+  <ion-card class="basicInputForm">
+    <br>
+    <ion-card-title style="text-align: center;"><strong>Service Details</strong></ion-card-title>
+    <br><br>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Select a service: </ion-label>
+          <ion-select interface="popover" [(ngModel)]="serviceSelection">
+            <ion-select-option value="Interior">Interior</ion-select-option>
+            <ion-select-option value="Exterior">Exterior</ion-select-option>
+            <ion-select-option value="Wood Siding">Wood Siding</ion-select-option>
+            <ion-select-option value="Vinyl Siding">Vinyl Siding</ion-select-option>
+            <ion-select-option value="Stucco">Stucco</ion-select-option>
+            <ion-select-option value="Garages">Garages</ion-select-option>
+            <ion-select-option value="Trim Work">Trim Work</ion-select-option>
+            <ion-select-option value="Decks">Decks</ion-select-option>
+            <ion-select-option value="Fences">Fences</ion-select-option>
+          </ion-select>
+        </ion-item><br>
+        <ion-item>
+          <ion-label>Description: </ion-label>
+          <ion-textarea #myInput id="myInput" rows="1" maxLength="150" [(ngModel)]="description" name="desc">
+          </ion-textarea>
+        </ion-item><br>
+        <ion-item>
+          <ion-label>Material Cost: </ion-label>
+          <ion-input type="text" [(ngModel)]="materialCost" name="materialCost"></ion-input>
+        </ion-item><br>
+        <ion-item>
+          <ion-label>Hours Required: </ion-label>
+          <ion-input type="text" [(ngModel)]="hoursRequired" name="hoursReq"></ion-input>
+        </ion-item>
+      </ion-list>
+      <br><br>
+      <div id="submitBtn" style="text-align: center;">
+        <ion-button ion-button type="submit" color="success" block (click)="onSubmit()">Submit</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -2,7 +2,43 @@ ion-content ion-toolbar {
   --background: translucent;
 }
 
+ion-content {
+  --background: url('../../assets/images/background.png') 0 0/100% 100% no-repeat;;
+}
+
+ion-card {
+  --ion-background-color: rgba(255,255,255,0.6);
+}
+
+ion-card-content {
+  --ion-background-color: rgba(255,255,255,0.00);
+}
+
 .basicInputForm {
   margin-left: 35px;
   margin-right: 35px;
+  margin-top: 50px;
+}
+
+ion-button {
+  width: 100%;
+}
+
+ion-list {
+  margin-bottom: 0!important;
+    ion-item {
+      --ion-background-color: rgba(255,255,255,0.6);
+        --border-color: transparent!important;
+        --highlight-height: 0;
+        border: 1px solid black;
+        border-radius: 4px;
+        &.item-has-focus {
+            border: 1px solid var(--ion-color-primary);
+        }
+        ion-label {
+            color: black!important;
+            font-weight: 300;
+            font-size: 1rem!important;
+        }
+    }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Client } from "../interfaces/Client";
 import { AlertController } from '@ionic/angular';
+import { Router, NavigationExtras } from "@angular/router";
 
 @Component({
   selector: 'app-tab2',
@@ -16,8 +17,6 @@ export class Tab2Page {
   cPhoneNum: string;
   cEmail: string;
 
-  clientsArr: Array<Client> = [];
-
   clientObj: Client = {
     cName: "",
     cAddress: "",
@@ -26,7 +25,7 @@ export class Tab2Page {
     cEmail: ""
   };
 
-  constructor(private alertController: AlertController) { }
+  constructor(private alertController: AlertController, private router: Router) { }
 
   onSave() {
     // validate everything
@@ -46,21 +45,17 @@ export class Tab2Page {
         cPhoneNum: this.cPhoneNum.trim(),
         cEmail: this.cEmail.trim()
       }
-
-      console.log("Client obj", this.clientObj);
-
-      // add object to array
-
-      this.clientsArr.push(this.clientObj);
-      console.log("Array", this.clientsArr)
-
-      // alert with success message
+      // alert with success message && send info
       this.successAlert();
-
     } else {
       // fail message
       this.errorAlert();
     }
+  }
+
+  sendInfo(data: any) {
+    const naviExtras: NavigationExtras = { state: { sendData: data } };
+    this.router.navigate(['view-service'], naviExtras);
   }
 
   async errorAlert() {
@@ -69,10 +64,6 @@ export class Tab2Page {
       subHeader: '',
       message: 'Please make sure you enter valid information into all fields.',
       buttons: [
-        {
-          text: 'Cancel',
-          handler: () => { console.log('Confirm cancel!'); }
-        },
         {
           text: 'OK',
           handler: () => { console.log('Confirm OK!'); }
@@ -86,7 +77,14 @@ export class Tab2Page {
       header: 'Success',
       subHeader: '',
       message: 'Client ' + this.clientObj.cName + ' was added successfully.',
-      buttons: ['OK']
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            // send info to next page
+            this.sendInfo(this.clientObj);
+          }
+        }]
     });
     await alert.present();
   }

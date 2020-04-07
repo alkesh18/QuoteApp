@@ -1,0 +1,33 @@
+<ion-content>
+  <ion-card class="basicInputForm">
+    <br>
+    <ion-card-title style="text-align: center;"><strong>Service</strong></ion-card-title>
+    <br><br>
+    <ion-card-content>
+      <ion-label style="color: black;" center>To add a service, please click 'Add'. A list of added services will be
+        shown below. Once completed, click 'Next'. </ion-label>
+      <br><br>
+      <div style="text-align: center;">
+        <ion-button ion-button type="submit" color="success" block [routerLink]="['/add-service']">Add</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <br>
+  <ion-card class="basicInputForm" *ngIf="isShown">
+    <br>
+    <ion-card-title style="text-align: center;"><strong>Selected Services:</strong></ion-card-title>
+    <ion-card-content>
+      <div>
+        <ion-list>
+          <ion-item *ngFor="let selectedService of serviceInfoArray | slice:1">
+            {{selectedService.selectedService}} - {{selectedService.description}}
+          </ion-item>
+        </ion-list>
+      </div>
+      <div *ngIf="isShown" style="text-align: center;">
+        <ion-button ion-button type="submit" color="success" block (click)="onSave()">Next</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
