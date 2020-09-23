@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Client } from "../interfaces/Client";
 import { AlertController } from '@ionic/angular';
 import { Router, NavigationExtras } from "@angular/router";
+import { Validator } from "../common/validator";
 
 @Component({
   selector: 'app-tab2',
@@ -25,16 +26,16 @@ export class Tab2Page {
     cEmail: ""
   };
 
-  constructor(private alertController: AlertController, private router: Router) { }
+  constructor(private alertController: AlertController, private router: Router, private validator: Validator) { }
 
   onSave() {
     // validate everything
     if (
-      (this.validateName(this.cName)) &&
-      (this.validateAddress(this.cAddress)) &&
-      (this.validateCity(this.cCity)) &&
-      (this.validatePhoneNum(this.cPhoneNum)) &&
-      (this.validateEmail(this.cEmail))
+      (this.validator.validateName(this.cName)) &&
+      (this.validator.validateAddress(this.cAddress)) &&
+      (this.validator.validateCity(this.cCity)) &&
+      (this.validator.validatePhoneNum(this.cPhoneNum)) &&
+      (this.validator.validateEmail(this.cEmail))
     ) {
 
       // populate object
@@ -87,65 +88,5 @@ export class Tab2Page {
         }]
     });
     await alert.present();
-  }
-
-  validateName(name: string) {
-    let result = false;
-
-    if (!!name) {  //It returns false for null,undefined,0,000,"",false.
-      name = name.trim();
-      let namePattern = /^[a-zA-Z ]+$/;
-      result = (namePattern.test(name)) ? true : false;
-    }
-
-    return result;
-  }
-
-  validateAddress(address: string) {
-    let result = false;
-
-    if (!!address) {
-      address = address.trim();
-      let addressPatern = /^[a-zA-Z0-9 ]*$/;
-      result = (addressPatern.test(address)) ? true : false;
-    }
-
-    return result;
-  }
-
-  validateCity(city: string) {
-    let result = false;
-
-    if (!!city) {
-      city = city.trim();
-      let cityPattern = /^[a-zA-Z ]+$/;
-      result = (cityPattern.test(city)) ? true : false;
-    }
-
-    return result;
-  }
-
-  validatePhoneNum(phoneNum: string) {
-    let result = false;
-
-    if (!!phoneNum) {
-      phoneNum = phoneNum.trim();
-      let phoneNumPattern = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-      result = (phoneNumPattern.test(phoneNum)) ? true : false;
-    }
-
-    return result;
-  }
-
-  validateEmail(email: string) {
-    let result = false;
-
-    if (!!email) {
-      email = email.trim();
-      let emailPattern = /\S+@\S+\.\S+/;
-      result = (emailPattern.test(email)) ? true : false;
-    }
-
-    return result;
   }
 }

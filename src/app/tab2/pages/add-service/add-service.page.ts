@@ -3,6 +3,7 @@ import { Service } from 'src/app/interfaces/service';
 import { Router, NavigationExtras } from '@angular/router';
 import { QuoteServiceService } from 'src/app/services/quote-service.service';
 import { AlertController } from '@ionic/angular';
+import { Validator } from "../../../common/validator";
 
 @Component({
   selector: 'app-add-service',
@@ -24,14 +25,14 @@ export class AddServicePage implements OnInit {
     hoursRequired: ""
   }  
 
-  constructor(private router: Router, private quoteService: QuoteServiceService, private alertController: AlertController) { }
+  constructor(private router: Router, private quoteService: QuoteServiceService, private alertController: AlertController, private validator: Validator) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
     // validate before moving on
-    if(this.validateNumber(this.materialCost) && this.validateNumber(this.hoursRequired)){
+    if(this.validator.validateNumber(this.materialCost) && this.validator.validateNumber(this.hoursRequired)){
       this.serviceObj = {
         selectedService: this.serviceSelection,
         description: this.description.trim(),
@@ -79,17 +80,4 @@ export class AddServicePage implements OnInit {
     });
     await alert.present();
   }
-
-  validateNumber(number: string) {
-    let result = false;
-
-    if (!!number) {
-      number = number.trim();
-      let numberPatern = /^[ 0-9 ]*$/;
-      result = (numberPatern.test(number)) ? true : false;
-    }
-
-    return result;
-  }
-
 }
