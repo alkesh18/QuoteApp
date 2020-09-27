@@ -22,7 +22,8 @@ export class AddServicePage implements OnInit {
     selectedService: "",
     description: "",
     materialCost: "",
-    hoursRequired: ""
+    hoursRequired: "",
+    totalCost: 0
   }  
 
   constructor(private router: Router, private quoteService: QuoteServiceService, private alertController: AlertController, private validator: Validator) { }
@@ -37,7 +38,8 @@ export class AddServicePage implements OnInit {
         selectedService: this.serviceSelection,
         description: this.description.trim(),
         materialCost: this.materialCost.trim(),
-        hoursRequired: this.hoursRequired.trim()
+        hoursRequired: this.hoursRequired.trim(),
+        totalCost: 0
       }  
       this.quoteService.setServiceObj(this.serviceObj);
       this.successAlert();

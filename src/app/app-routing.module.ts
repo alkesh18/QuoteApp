@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'add-service',
     loadChildren: () => import('./tab2/pages/add-service/add-service.module').then( m => m.AddServicePageModule)
+  },
+  {
+    path: 'view-quote',
+    loadChildren: () => import('./tab2/pages/view-quote/view-quote.module').then( m => m.ViewQuotePageModule)
   }
 ];
 @NgModule({

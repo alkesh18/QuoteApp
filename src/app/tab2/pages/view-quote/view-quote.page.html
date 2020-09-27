@@ -1,0 +1,32 @@
+<ion-content>
+  <ion-card class="basicInputForm">
+    <br>
+    <ion-card-title style="text-align: center;"><strong>Finialize Quote</strong></ion-card-title>
+    <br>
+    <ion-card-content>
+      <ion-label style="color: black;">Client: {{ clientObj.cName }}</ion-label> <br>
+      <div>
+        <ion-list>
+          <ion-item>
+            <ion-text center>Service</ion-text>
+            <ion-text class="price">Price</ion-text>
+          </ion-item>
+          <ion-item *ngFor="let service of selectedServiceList">
+            <ion-text center>{{service.selectedService}}</ion-text>
+            <ion-text class="price">$ {{service.totalCost}}</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-text>Total: $ {{total}}</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-label>Markup: </ion-label>
+            <ion-input type="text" [(ngModel)]="markup" name="markupPct"></ion-input>
+            <ion-button class="updateBtn" ion-button type="submit" color="success" (click)="calcTotalWithMarkup()">Update</ion-button>
+          </ion-item>
+        </ion-list>
+        <br><br>
+        <ion-button ion-button type="submit" color="success" block [routerLink]="['/']">Submit</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
