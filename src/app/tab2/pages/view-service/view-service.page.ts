@@ -50,7 +50,9 @@ export class ViewServicePage {
 
   onSave() {
     this.data.clientInfo = this.clientObj;
+    this.serviceInfoArray.shift();
     this.data.serviceInfo = this.serviceInfoArray;
+    this.quoteService.setQuoteData(this.data);
     this.successAlert();
   }
 
@@ -58,11 +60,12 @@ export class ViewServicePage {
     const alert = await this.alertController.create({
       header: 'Success',
       subHeader: '',
-      message: (this.serviceInfoArray.length-1) +' service(s) were added successfully.',
+      message: (this.serviceInfoArray.length) +' service(s) were added successfully.',
       buttons: [
         {
           text: 'OK',
           handler: () => {
+            this.router.navigate(['/','view-quote']);
           }
         }]
     });
