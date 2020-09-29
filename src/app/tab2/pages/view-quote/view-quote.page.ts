@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { Validator } from 'src/app/common/validator';
 import { Client } from 'src/app/interfaces/Client';
 import { Service } from 'src/app/interfaces/service';
 import { QuoteServiceService } from 'src/app/services/quote-service.service';
@@ -31,7 +33,7 @@ export class ViewQuotePage implements OnInit {
 
   selectedServiceList: Array<Service> = [];
 
-  constructor(private router: Router, private quoteService: QuoteServiceService) { }
+  constructor(private router: Router, private quoteService: QuoteServiceService, private validate: Validator, private alertController: AlertController) { }
 
   ngOnInit() {
     this.data = this.quoteService.getQuoteData();
@@ -49,14 +51,33 @@ export class ViewQuotePage implements OnInit {
   }
 
   calcTotalWithMarkup() {
-    let markup = parseInt(this.markup, 10);
-    this.total = (this.originalTotal + (this.originalTotal*(markup/100)));
+    if(this.validate.validateNumber(this.markup)){
+      let markup = parseInt(this.markup, 10);
+      this.total = (this.originalTotal + (this.originalTotal*(markup/100)));
+    } else {
+      this.markup = "";
+      this.errorAlert();
+    }
   }
 
   calcIndServiceTotal(serviceObj: Service): Number {
     let currTotal =  (parseInt(serviceObj.materialCost, 10) + (serviceObj.hoursRequired*this.wage));
     serviceObj.totalCost = currTotal;
     return currTotal;
+  }
+
+  async errorAlert() {
+    const alert = await this.alertController.create({
+      header: 'Invalid Entry',
+      subHeader: '',
+      message: 'Please make sure to enter a valid markup value.',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => { console.log('Confirm OK!'); }
+        }]
+    });
+    await alert.present();
   }
 
 }
