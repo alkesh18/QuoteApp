@@ -1,9 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Validator } from 'src/app/common/validator';
 import { Client } from 'src/app/interfaces/Client';
 import { Service } from 'src/app/interfaces/service';
+import { NodejsService } from 'src/app/services/nodejs.service';
 import { QuoteServiceService } from 'src/app/services/quote-service.service';
 
 @Component({
@@ -15,9 +17,10 @@ export class ViewQuotePage implements OnInit {
 
   data: any = {
     clientInfo: {},
-    serviceInfo: []
+    serviceInfo: [],
+    total: Number
   }
-  
+
   clientObj: Client = {
     cName: "",
     cAddress: "",
@@ -33,7 +36,7 @@ export class ViewQuotePage implements OnInit {
 
   selectedServiceList: Array<Service> = [];
 
-  constructor(private router: Router, private quoteService: QuoteServiceService, private validate: Validator, private alertController: AlertController) { }
+  constructor(private router: Router, private quoteService: QuoteServiceService, private validate: Validator, private alertController: AlertController, private Node: NodejsService) { }
 
   ngOnInit() {
     this.data = this.quoteService.getQuoteData();
@@ -42,7 +45,7 @@ export class ViewQuotePage implements OnInit {
     this.calcPreMarkupTotal();
   }
 
-  calcPreMarkupTotal() {        
+  calcPreMarkupTotal() {
     this.selectedServiceList.forEach(element => {
       element.totalCost = this.calcIndServiceTotal(element);
       this.originalTotal += element.totalCost;
@@ -51,9 +54,12 @@ export class ViewQuotePage implements OnInit {
   }
 
   calcTotalWithMarkup() {
-    if(this.validate.validateNumber(this.markup)){
+    if (this.validate.validateNumber(this.markup)) {
       let markup = parseInt(this.markup, 10);
-      this.total = (this.originalTotal + (this.originalTotal*(markup/100)));
+      this.total = (this.originalTotal + (this.originalTotal * (markup / 100)));
+      this.data.total = this.total;
+      console.log(this.data);
+      this.quoteService.setQuoteData(this.data);
     } else {
       this.markup = "";
       this.errorAlert();
@@ -61,9 +67,21 @@ export class ViewQuotePage implements OnInit {
   }
 
   calcIndServiceTotal(serviceObj: Service): Number {
-    let currTotal =  (parseInt(serviceObj.materialCost, 10) + (serviceObj.hoursRequired*this.wage));
+    let currTotal = (parseInt(serviceObj.materialCost, 10) + (serviceObj.hoursRequired * this.wage));
     serviceObj.totalCost = currTotal;
     return currTotal;
+  }
+
+  saveQuoteData() {
+    const params = this.quoteService.getQuoteData();
+    this.Node.insert(params)
+      .subscribe(data => {
+        console.log("Saved Quote")
+      },
+        (err: HttpErrorResponse) => {
+          console.log(err.message);
+        }
+      )
   }
 
   async errorAlert() {

@@ -45,7 +45,7 @@
           </ion-item>
         </ion-list>
         <br><br>
-        <ion-button ion-button type="submit" color="success" block [routerLink]="['/']">Submit</ion-button>
+        <ion-button ion-button type="submit" color="success" block (click)="saveQuoteData()" [routerLink]="['/']">Submit</ion-button>
       </div>
     </ion-card-content>
   </ion-card>

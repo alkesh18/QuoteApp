@@ -17,7 +17,12 @@ const routes: Routes = [
   {
     path: 'view-quote',
     loadChildren: () => import('./tab2/pages/view-quote/view-quote.module').then( m => m.ViewQuotePageModule)
+  },
+  {
+    path: 'modify-client',
+    loadChildren: () => import('./tab1/pages/modify-client/modify-client.module').then( m => m.ModifyClientPageModule)
   }
+
 ];
 @NgModule({
   imports: [

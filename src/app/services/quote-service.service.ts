@@ -25,7 +25,8 @@ export class QuoteServiceService {
 
   quoteData: any = {
     clientInfo: {},
-    serviceInfo: Array<Service>()
+    serviceInfo: Array<Service>(),
+    total: Number
   }
 
   constructor() { }
