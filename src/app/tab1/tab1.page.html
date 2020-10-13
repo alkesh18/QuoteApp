@@ -5,7 +5,7 @@
     <ion-card-title style="text-align: center;"><strong>Quote History</strong></ion-card-title>
     <ion-card-content>
       <ion-label>Coming soon...</ion-label>
-      <ion-button (click)="viewQuoteHistory()">Load</ion-button>
+      <ion-button (click)="viewQuoteHistory()">Refresh</ion-button>
     </ion-card-content>
   </ion-card> 
   <ion-card *ngFor="let quote of QuoteInfo">
@@ -15,7 +15,7 @@
       <ion-label>Client: {{quote.client.cAddress}} </ion-label><br>
       <ion-label>Selected Services: </ion-label> <ion-label *ngFor="let service of quote.services">{{service.selectedService}}, </ion-label><br>
       <ion-label>Total: {{quote.total}}</ion-label><br>
-      <ion-button>Modify Client</ion-button>
+      <ion-button (click)="selectQuoteToEdit(quote)">Modify Client</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

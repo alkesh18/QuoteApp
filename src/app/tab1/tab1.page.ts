@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NodejsService } from '../services/nodejs.service';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -12,9 +13,9 @@ export class Tab1Page {
   QuoteInfo: any;
   selServices: String;
 
-  constructor(private node: NodejsService) { }
+  constructor(private node: NodejsService, private router: Router) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.viewQuoteHistory();
   }
 
@@ -25,9 +26,14 @@ export class Tab1Page {
         console.log(this.QuoteInfo);
       },
         (err: HttpErrorResponse) => {
-          console.log(err.message);          
+          console.log(err.message);
         }
       )
+  }
+
+  selectQuoteToEdit(data: any) {
+    const naviExtras: NavigationExtras = { state: { sendData: data } };
+    this.router.navigate(['modify-client'], naviExtras);
   }
 
 }
