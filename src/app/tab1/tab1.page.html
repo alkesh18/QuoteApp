@@ -4,18 +4,20 @@
   <ion-card class="basicInputForm">
     <ion-card-title style="text-align: center;"><strong>Quote History</strong></ion-card-title>
     <ion-card-content>
-      <ion-label>Coming soon...</ion-label>
-      <ion-button (click)="viewQuoteHistory()">Refresh</ion-button>
+      <ion-button (click)="viewQuoteHistory()" color="success">Refresh</ion-button>
     </ion-card-content>
   </ion-card> 
-  <ion-card *ngFor="let quote of QuoteInfo">
+  <ion-card *ngFor="let quote of QuoteInfo" class="basicInputForm">
     <ion-card-content>
-      <ion-label>Quote Information</ion-label><br>
+      <strong>
+      <ion-card-title style="text-align: center;"><strong>Quote Information</strong></ion-card-title><br>
       <ion-label>Client: {{quote.client.cName}} </ion-label><br>
-      <ion-label>Client: {{quote.client.cAddress}} </ion-label><br>
+      <ion-label>Address: {{quote.client.cAddress}} </ion-label><br>
       <ion-label>Selected Services: </ion-label> <ion-label *ngFor="let service of quote.services">{{service.selectedService}}, </ion-label><br>
-      <ion-label>Total: {{quote.total}}</ion-label><br>
-      <ion-button (click)="selectQuoteToEdit(quote)">Modify Client</ion-button>
+      <ion-label>Total: $ {{quote.total}}</ion-label><br>
+      <br>
+      </strong>
+      <ion-button (click)="selectQuoteToEdit(quote)" color="success">Modify Client</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>
