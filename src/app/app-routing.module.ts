@@ -21,7 +21,11 @@ const routes: Routes = [
   {
     path: 'modify-client',
     loadChildren: () => import('./tab1/pages/modify-client/modify-client.module').then( m => m.ModifyClientPageModule)
+  },  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   }
+
 
 ];
 @NgModule({
