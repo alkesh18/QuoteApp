@@ -26,6 +26,7 @@ export class QuoteServiceService {
   quoteData: any = {
     clientInfo: {},
     serviceInfo: Array<Service>(),
+    franchiseeId: Number,
     total: Number
   }
 

@@ -9,7 +9,7 @@ export class NodejsService {
   constructor(private http: HttpClient) { }
 
   insert(params) {
-    return this.http.post('http://127.0.0.1:8887/quotes/', { params });
+    return this.http.post('http://127.0.0.1:8887/quotes/',  {params} );
   }
 
   update(params) {

@@ -1,15 +1,16 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from "../interfaces/user";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginServiceService {
 
+  user: User;
   isAuthenticated : boolean = false
 
-  constructor() {
-    
-  }
+  constructor(private http: HttpClient) {  }
 
   getSession(){
     return this.isAuthenticated
@@ -22,7 +23,29 @@ export class LoginServiceService {
     //setTimeout( ()=>{ isAuthenticated = false }, 1800000);
   }
 
+  public checkAuth() : Boolean {
+    let userData = localStorage.getItem('userInfo')
+    if(userData && JSON.parse(userData)){
+      return true;
+    }
+    return false;
+  }
+
+  public getUserInfo() {
+    return localStorage.getItem('userInfo');
+  }
+
+  public getUser(){
+    return this.user;
+  }
   
-  
+  public setUserInfo(user){
+    localStorage.setItem('userInfo', JSON.stringify(user));
+    this.user = user;
+  }
+
+  login(params) {
+    return this.http.post<any>('http://127.0.0.1:8887/users/login', {params} );
+  }  
 
 }

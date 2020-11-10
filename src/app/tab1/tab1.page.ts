@@ -13,7 +13,9 @@ export class Tab1Page {
   QuoteInfo: any;
   selServices: String;
 
-  constructor(private node: NodejsService, private router: Router) { }
+  constructor(private node: NodejsService, private router: Router) {
+    this.viewQuoteHistory();
+   }
 
   ngOnInit() {
     this.viewQuoteHistory();
@@ -21,8 +23,8 @@ export class Tab1Page {
 
   viewQuoteHistory() {
     this.node.retrieveAll()
-      .subscribe(data => {
-        this.QuoteInfo = data;
+    .subscribe((data) => {
+        this.QuoteInfo = Object.values(data);
         console.log(this.QuoteInfo);
       },
         (err: HttpErrorResponse) => {
@@ -31,7 +33,7 @@ export class Tab1Page {
       )
   }
 
-  selectQuoteToEdit(data: any) {
+   selectQuoteToEdit(data: any) {
     const naviExtras: NavigationExtras = { state: { sendData: data } };
     this.router.navigate(['modify-client'], naviExtras);
   }
