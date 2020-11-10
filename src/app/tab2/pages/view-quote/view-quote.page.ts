@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { Validator } from 'src/app/common/validator';
 import { Client } from 'src/app/interfaces/Client';
 import { Service } from 'src/app/interfaces/service';
+import { LoginServiceService } from 'src/app/services/login-service.service';
 import { NodejsService } from 'src/app/services/nodejs.service';
 import { QuoteServiceService } from 'src/app/services/quote-service.service';
 
@@ -28,6 +29,8 @@ export class ViewQuotePage implements OnInit {
     cPhoneNum: "",
     cEmail: ""
   };
+  
+  user: any;
 
   total = 0;
   originalTotal = 0;
@@ -36,10 +39,13 @@ export class ViewQuotePage implements OnInit {
 
   selectedServiceList: Array<Service> = [];
 
-  constructor(private router: Router, private quoteService: QuoteServiceService, private validate: Validator, private alertController: AlertController, private Node: NodejsService) { }
+  constructor(private router: Router, private quoteService: QuoteServiceService, private validate: Validator, 
+    private alertController: AlertController, private Node: NodejsService, private auth: LoginServiceService) { }
 
   ngOnInit() {
+    this.user = this.auth.getUserInfo();
     this.data = this.quoteService.getQuoteData();
+    this.data.franchiseeId = this.user.franchiseeId;
     this.clientObj = this.data.clientInfo;
     this.selectedServiceList = this.data.serviceInfo;
     this.calcPreMarkupTotal();
