@@ -24,6 +24,22 @@ const routes: Routes = [
   },  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'add-franchisee',
+    loadChildren: () => import('./tab3/pages/add-franchisee/add-franchisee.module').then( m => m.AddFranchiseePageModule)
+  },
+  {
+    path: 'modify-franchisee',
+    loadChildren: () => import('./tab3/pages/modify-franchisee/modify-franchisee.module').then( m => m.ModifyFranchiseePageModule)
+  },
+  {
+    path: 'view-franchisees',
+    loadChildren: () => import('./tab3/pages/view-franchisees/view-franchisees.module').then( m => m.ViewFranchiseesPageModule)
+  },
+  {
+    path: 'disable-franchisee',
+    loadChildren: () => import('./tab3/pages/disable-franchisee/disable-franchisee.module').then( m => m.DisableFranchiseePageModule)
   }
 
 
