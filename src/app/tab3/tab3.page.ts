@@ -15,4 +15,16 @@ export class Tab3Page {
     this.router.navigate(['/','add-franchisee']);
   }
 
+  modifyUser() {
+    this.router.navigate(['/','modify-franchisee']);
+  }
+
+  disableUser() {
+    this.router.navigate(['/','disable-franchisee']);
+  }
+
+  viewFranchisees() {
+    this.router.navigate(['/','view-franchisees']);
+  }
+
 }

@@ -5,7 +5,6 @@
       <br><ion-card-title style="text-align: center;"><strong>Add Franchisee</strong></ion-card-title><br>
     </ion-card>  
     <ion-card class="basicInputForm"><br>
-      <ion-card-title style="text-align: center;"><strong>Settings</strong></ion-card-title>
       <ion-card-content>
         <ion-list>
           <ion-item>
@@ -35,7 +34,6 @@
           <br>
           <ion-item>
             <ion-label>Admin:</ion-label>
-            <!-- <ion-radio-group name="administrator" style="margin-right: 35%;"> -->
               <ion-item>
                 <ion-label>Yes</ion-label>
                 <input type="radio" name="administrator" slot="start" [(ngModel)]="isAdmin" value="yes">
@@ -44,7 +42,6 @@
                 <ion-label>No</ion-label>
                 <input type="radio" name="administrator" slot="start" [(ngModel)]="isAdmin" value="no" checked>
               </ion-item>
-            <!-- </ion-radio-group> -->
           </ion-item>
           <br>
           <ion-button (click)="onSubmit()">Submit</ion-button>

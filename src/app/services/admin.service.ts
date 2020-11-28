@@ -8,8 +8,8 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  getAllFranchisees(params) {
-    return this.http.get('http://127.0.0.1:8887/users/',  {params} )
+  getAllFranchisees() {
+    return this.http.get('http://127.0.0.1:8887/users/' )
   }
 
   getPrevId() {
@@ -28,8 +28,8 @@ export class AdminService {
 
   }
 
-  disablePassword(params) {
-
+  disableUser(params) {
+    return this.http.patch('http://127.0.0.1:8887/users/disableUser/',  {params} );
   }
   
 }

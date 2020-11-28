@@ -19,7 +19,7 @@
     <ion-card-content>
       <div>
         <ion-list>
-          <ion-item *ngFor="let selectedService of serviceInfoArray">
+          <ion-item *ngFor="let selectedService of serviceInfoArray | splice:1">
             {{selectedService.selectedService}} - {{selectedService.description}}
           </ion-item>
         </ion-list>
