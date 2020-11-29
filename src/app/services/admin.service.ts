@@ -12,6 +12,10 @@ export class AdminService {
     return this.http.get('http://127.0.0.1:8887/users/' )
   }
 
+  getLogedOutFranchisees(params) {
+    return this.http.post('http://127.0.0.1:8887/users/getOtherUsers/', {params} )
+  }
+
   getPrevId() {
     return this.http.get('http://127.0.0.1:8887/users/getPrevId/')
   }

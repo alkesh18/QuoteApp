@@ -2,7 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { User } from 'src/app/interfaces/user';
 import { AdminService } from 'src/app/services/admin.service';
+import { LoginServiceService } from 'src/app/services/login-service.service';
 
 @Component({
   selector: 'app-disable-franchisee',
@@ -11,22 +13,29 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class DisableFranchiseePage implements OnInit {
 
-  constructor(private adminService: AdminService, private alertCtrl: AlertController, private router: Router) { 
-    this.getAllUsers();
-    console.log("constructor", this.users)
-  }
+  constructor(private adminService: AdminService, private alertCtrl: AlertController, private router: Router, private login: LoginServiceService) { 
+    this.currentlyLoggedInUser = this.login.getUser();
+    this.getAllUsers(this.currentlyLoggedInUser);
 
-  users: any;
-  selectedUser: any;
+  }
 
   ngOnInit() {
-    this.getAllUsers();
   }
 
-  getAllUsers() {
-    this.adminService.getAllFranchisees()
+  users: any[];
+  selectedUser: any;
+  currentlyLoggedInUser: User;
+
+  ionViewDidEnter() {
+    
+    
+  }
+
+  
+
+  getAllUsers(username) {
+    this.adminService.getLogedOutFranchisees(username)
     .subscribe((data) => {
-      console.log(data);
       this.users = Object.values(data);
       },
         (err: HttpErrorResponse) => {
@@ -47,6 +56,7 @@ export class DisableFranchiseePage implements OnInit {
   onSubmit(){
     console.log(this.selectedUser);
     this.disableUser({username: this.selectedUser});
+    this.successAlert();
 
   }
 
