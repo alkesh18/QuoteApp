@@ -19,8 +19,11 @@ export class ViewQuotePage implements OnInit {
   data: any = {
     clientInfo: {},
     serviceInfo: [],
-    total: Number
+    total: Number,
+    franchiseeId: Number
   }
+
+  franchiseeId=0;
 
   clientObj: Client = {
     cName: "",
@@ -43,9 +46,13 @@ export class ViewQuotePage implements OnInit {
     private alertController: AlertController, private Node: NodejsService, private auth: LoginServiceService) { }
 
   ngOnInit() {
-    this.user = this.auth.getUserInfo();
+    this.user = JSON.parse(this.auth.getUserInfo());
     this.data = this.quoteService.getQuoteData();
-    this.data.franchiseeId = this.user.franchiseeId;
+    console.log("logged in user", this.user);
+    this.franchiseeId = this.user.franchiseeId;
+    this.data.franchiseeId = this.franchiseeId;
+    console.log("franchisee id", this.data.franchiseeId);
+    this.quoteService.setQuoteData(this.data);
     this.clientObj = this.data.clientInfo;
     this.selectedServiceList = this.data.serviceInfo;
     this.calcPreMarkupTotal();
@@ -80,6 +87,7 @@ export class ViewQuotePage implements OnInit {
 
   saveQuoteData() {
     const params = this.quoteService.getQuoteData();
+    console.log(params);
     this.Node.insert(params)
       .subscribe(data => {
         console.log("Saved Quote")

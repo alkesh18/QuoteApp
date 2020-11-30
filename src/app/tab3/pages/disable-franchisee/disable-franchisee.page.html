@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Disable Franchisee</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="basicInputForm">
+    <br /><ion-card-title style="text-align: center"
+      ><strong>Disable Franchisee</strong></ion-card-title
+    ><br />
+  </ion-card>
+  <ion-card class="basicInputForm"
+    ><br />
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Select a franchisee:</ion-label><br>
+        <div >
+          <div *ngFor="let user of users" >
+            <ion-select interface="popover" [(ngModel)]="selectedUser">
+            <ion-select-option *ngFor="let u of user" value="{{u.username}}">
+              {{u.name}}
+            </ion-select-option>
+          </ion-select>           
+          </div>
+      </div>
+      
+      </ion-item><br><br><br>
+      <ion-button (click)="onSubmit()">Submit</ion-button>
+      <br />
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

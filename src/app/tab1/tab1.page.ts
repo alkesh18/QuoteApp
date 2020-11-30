@@ -2,6 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NodejsService } from '../services/nodejs.service';
 import { Router, NavigationExtras } from '@angular/router';
+import { LoginServiceService } from '../services/login-service.service';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-tab1',
@@ -12,17 +14,23 @@ export class Tab1Page {
 
   QuoteInfo: any;
   selServices: String;
+  user: User;
 
-  constructor(private node: NodejsService, private router: Router) {
-    this.viewQuoteHistory();
+  constructor(private node: NodejsService, private router: Router, private auth: LoginServiceService) {
+    this.user = JSON.parse(this.auth.getUserInfo());
+    console.log("constructor", this.user);
+    this.viewQuoteHistory(this.user);
    }
 
   ngOnInit() {
-    this.viewQuoteHistory();
+    this.user = JSON.parse(this.auth.getUserInfo());
+    console.log("oninit", this.user);
+    this.viewQuoteHistory(this.user);
   }
 
-  viewQuoteHistory() {
-    this.node.retrieveAll()
+  viewQuoteHistory(user) {
+    const params = {franchiseeId: user.franchiseeId}
+    this.node.retrieveAll(params)
     .subscribe((data) => {
         this.QuoteInfo = Object.values(data);
         console.log(this.QuoteInfo);

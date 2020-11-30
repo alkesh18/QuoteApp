@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Modify Franchisee</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="basicInputForm">
+    <br>
+    <ion-card-title style="text-align: center;"><strong>Modify Client</strong></ion-card-title>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Name:</ion-label>
+          <ion-input type="text" [(ngModel)]="name" name="franchiseeName"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label>Username:</ion-label>
+          <ion-input type="text" [(ngModel)]="username" name="uName"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label>Password: </ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="pWord"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label>Confirm Password:</ion-label>
+          <ion-input type="password" [(ngModel)]="confirm" name="confirmPWord"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label>Admin:</ion-label>
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <input type="radio" name="administrator" slot="start" [(ngModel)]="isAdmin" [value]="true">
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <input type="radio" name="administrator" slot="start" [(ngModel)]="isAdmin" [value]="false" >
+            </ion-item>
+        </ion-item>
+        <ion-item>
+          <ion-label>Active:</ion-label>
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <input type="radio" name="active" slot="start" [(ngModel)]="isActive" [value]="true">
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <input type="radio" name="active" slot="start" [(ngModel)]="isActive" [value]="false">
+            </ion-item>
+        </ion-item>
+      </ion-list><br>
+      <div id="saveBtn" style="text-align: center;">
+        <ion-button ion-button type="submit" color="success" block (click)="onSave()">Save</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

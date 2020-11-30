@@ -20,7 +20,8 @@ export class NodejsService {
     return this.http.get('http://127.0.0.1:8887/quotes/selectQuote/', { params });
   }
 
-  retrieveAll() {
-    return this.http.get('http://127.0.0.1:8887/quotes/');
+  retrieveAll(params) {
+    console.log("params", params);
+    return this.http.get('http://127.0.0.1:8887/quotes/getAll/', {params});
   }
 }
