@@ -84,6 +84,11 @@ export class Tab2Page {
           handler: () => {
             // send info to next page
             this.sendInfo(this.clientObj);
+            this.cName = ""
+            this.cAddress = ""
+            this.cEmail = ""
+            this.cPhoneNum = ""
+            this.cCity = ""
           }
         }]
     });
