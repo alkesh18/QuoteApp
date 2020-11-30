@@ -33,7 +33,6 @@ export class ModifyClientPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
     this.loadQuoteData();
   }
 

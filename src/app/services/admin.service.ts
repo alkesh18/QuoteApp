@@ -25,7 +25,7 @@ export class AdminService {
   }
 
   modifyFranchisee(params) {
-
+    return this.http.patch('http://127.0.0.1:8887/users/updateUser/',  {params} );
   }
 
   viewFranchisees(params) {

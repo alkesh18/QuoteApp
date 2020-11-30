@@ -1,4 +1,4 @@
 export interface Operation {
     propName: String,
-    value: String
+    value: any
 }
