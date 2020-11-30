@@ -1,13 +1,13 @@
-<ion-header>
+<ion-header style="opacity: 1;">
   <ion-toolbar>
-    <ion-title>Modify Client</ion-title>
+    <ion-title><b>Modify Client</b></ion-title>
       <ion-buttons slot="start">
         <ion-back-button></ion-back-button>
       </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+  <ion-content [fullscreen]="true">
   <ion-card class="basicInputForm">
     <br>
     <ion-card-title style="text-align: center;"><strong>Modify Client</strong></ion-card-title>
@@ -39,7 +39,7 @@
         </ion-item>
       </ion-list><br>
       <div id="saveBtn" style="text-align: center;">
-        <ion-button ion-button type="submit" color="success" block (click)="onSave()">Save</ion-button>
+        <ion-button ion-button type="submit" block (click)="onSave()">Save</ion-button>
       </div>
     </ion-card-content>
   </ion-card>

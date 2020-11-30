@@ -117,10 +117,10 @@ export class ModifyFranchiseePage implements OnInit {
       userId: this.data._id,
       operations: this.operations
     }
-    console.log(params);
+    
     this.adminService.modifyFranchisee(params)
       .subscribe(data => {
-        console.log("Successfully Updated");
+        
       },
         (err: HttpErrorResponse) => {
           console.log(err.message)
@@ -156,7 +156,7 @@ export class ModifyFranchiseePage implements OnInit {
       buttons: [
         {
           text: 'OK',
-          handler: () => { console.log('Confirm OK!'); }
+          handler: () => {  }
         }]
     });
     await alert.present();
@@ -172,7 +172,7 @@ export class ModifyFranchiseePage implements OnInit {
           text: 'OK',
           handler: () => {
             // send info to next page
-            this.router.navigate(['tabs/tab3']);
+            this.router.navigate(['/view-franchisees']);
           }
         }]
     });

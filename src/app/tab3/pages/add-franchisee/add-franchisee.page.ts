@@ -80,11 +80,11 @@ export class AddFranchiseePage implements OnInit {
       franchiseeId: this.franchiseeId
     }
 
-    console.log(params);
+    
 
     this.adminService.addFranchisee(params).pipe(first())
     .subscribe((data) => {
-        console.log("franchisee added");
+        
       },
         (err: HttpErrorResponse) => {
           console.log(err.message);
@@ -100,7 +100,7 @@ export class AddFranchiseePage implements OnInit {
       buttons: [
         {
           text: 'OK',
-          handler: () => { console.log('Confirm OK!'); }
+          handler: () => {  }
         }]
     });
     await alert.present();

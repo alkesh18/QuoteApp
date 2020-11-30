@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
         return data.admin ? this.router.navigate(["tabs/tab3"]) : this.router.navigate(["tabs/tab1"]);
       },
       (err: HttpErrorResponse) => {
-        console.log(err.message);
+          
         this.incorrectCredentialsAlert();
       }
     );
@@ -67,7 +67,7 @@ export class LoginPage implements OnInit {
         {
           text: "OK",
           handler: () => {
-            console.log("Confirm OK!");
+              
           },
         },
       ],
@@ -85,7 +85,7 @@ export class LoginPage implements OnInit {
         {
           text: "OK",
           handler: () => {
-            console.log("Confirm OK!");
+             
           },
         },
       ],

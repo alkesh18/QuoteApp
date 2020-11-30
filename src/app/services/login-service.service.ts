@@ -10,6 +10,8 @@ export class LoginServiceService {
   user: User;
   isAuthenticated : boolean = false
 
+  ip : string = "127.0.0.1:8887";
+
   constructor(private http: HttpClient) {  }
 
   getSession(){
@@ -45,7 +47,7 @@ export class LoginServiceService {
   }
 
   login(params) {
-    return this.http.post<any>('http://127.0.0.1:8887/users/login', {params} );
+    return this.http.post<any>(`http://${this.ip}/users/login`, {params} );
   }  
 
 }

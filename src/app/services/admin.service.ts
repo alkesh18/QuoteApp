@@ -8,32 +8,30 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
+  ip : string = "127.0.0.1:8887";
+
   getAllFranchisees() {
-    return this.http.get('http://127.0.0.1:8887/users/' )
+    return this.http.get(`http://${this.ip}/users/` )
   }
 
   getLogedOutFranchisees(params) {
-    return this.http.post('http://127.0.0.1:8887/users/getOtherUsers/', {params} )
+    return this.http.post(`http://${this.ip}/users/getOtherUsers/`, {params} )
   }
 
   getPrevId() {
-    return this.http.get('http://127.0.0.1:8887/users/getPrevId/')
+    return this.http.get(`http://${this.ip}/users/getPrevId/`)
   }
 
   addFranchisee(params){
-    return this.http.post('http://127.0.0.1:8887/users/signup/',  {params} );
+    return this.http.post(`http://${this.ip}/users/signup/`,  {params} );
   }
 
   modifyFranchisee(params) {
-    return this.http.patch('http://127.0.0.1:8887/users/updateUser/',  {params} );
-  }
-
-  viewFranchisees(params) {
-
+    return this.http.patch(`http://${this.ip}/users/updateUser/`,  {params} );
   }
 
   disableUser(params) {
-    return this.http.patch('http://127.0.0.1:8887/users/disableUser/',  {params} );
+    return this.http.patch(`http://${this.ip}/users/disableUser/`,  {params} );
   }
   
 }

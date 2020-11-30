@@ -105,13 +105,13 @@ export class ModifyClientPage implements OnInit {
       quoteId: this.data._id,
       operations: this.operations
     }
-    console.log(params);
+    
     this.Node.update(params)
       .subscribe(data => {
-        console.log("Successfully Updated");
+        
       },
         (err: HttpErrorResponse) => {
-          console.log(err.message)
+          
         }
       )
   }
@@ -124,7 +124,7 @@ export class ModifyClientPage implements OnInit {
       buttons: [
         {
           text: 'OK',
-          handler: () => { console.log('Confirm OK!'); }
+          handler: () => {  }
         }]
     });
     await alert.present();

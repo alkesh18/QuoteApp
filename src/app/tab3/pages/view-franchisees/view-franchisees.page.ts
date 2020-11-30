@@ -10,8 +10,11 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./view-franchisees.page.scss'],
 })
 export class ViewFranchiseesPage implements OnInit {
+  show = false;
 
-  constructor(private adminService: AdminService, private router: Router) { }
+  constructor(private adminService: AdminService, private router: Router) { 
+    
+  }
 
   ngOnInit() {
     this.getAllFranchisees();
@@ -31,9 +34,21 @@ export class ViewFranchiseesPage implements OnInit {
   }
 
   selectFranchiseeToEdit(data: any) {
-    console.log(data);
+    
     const naviExtras: NavigationExtras = { state: { sendData: data } };
     this.router.navigate(['modify-franchisee'], naviExtras);
+  }
+
+  spinner(){
+    this.show = true
+    setTimeout(() => {
+      this.show = false;
+    }, 1500 ); 
+  }
+
+  spinnerFunction(){
+    this.getAllFranchisees();
+    this.spinner();
   }
 
 }

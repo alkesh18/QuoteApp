@@ -40,6 +40,10 @@ const routes: Routes = [
   {
     path: 'disable-franchisee',
     loadChildren: () => import('./tab3/pages/disable-franchisee/disable-franchisee.module').then( m => m.DisableFranchiseePageModule)
+  },
+  {
+    path: 'delete-quote',
+    loadChildren: () => import('./tab3/pages/delete-quote/delete-quote.module').then( m => m.DeleteQuotePageModule)
   }
 
 
