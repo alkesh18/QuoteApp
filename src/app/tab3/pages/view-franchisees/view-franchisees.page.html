@@ -1,28 +1,39 @@
 <ion-header style="opacity: 1;">
-  <ion-toolbar style="display: inline;">
-    <ion-title>View Franchisees</ion-title>
-      <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>&nbsp;
-      <ion-button (click)="viewQuoteHistory()" color="success">Refresh</ion-button>
+  <ion-toolbar>
+      <ion-title style="margin-top: 20px;"><b>View Franchisees</b></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>&nbsp;
+    <ion-buttons slot="end">
+      <!-- <ion-button (click)="getAllFranchisees()" style="background-color: blue;" slot="end">Refresh</ion-button> -->
+      <div>
+        <ion-icon (click)="spinnerFunction()" name="reload-outline" style="margin-right: 20px; width: 30px; height: 30px;"></ion-icon>
+        <ion-spinner name="dots" *ngIf="show" style="margin-right: 30px;"></ion-spinner>
+      </div>
+      
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
   <ion-content [fullscreen]="true">
+
+    
+    <br>
       <div *ngFor="let franchisee of franchisees">
         <ion-card *ngFor="let f of franchisee" class="basicInputForm">
           <ion-card-content>
+            
             <strong>
             <ion-card-title style="text-align: center;"><strong>Franchisee Information</strong></ion-card-title><br>
             <ion-label>Name: {{f.name}} </ion-label><br>
             <ion-label>Username: {{f.username}} </ion-label><br>
-            <ion-label>Franchisee Id: {{f.franchiseeId}}</ion-label> <br>
-            <ion-label>Email: $ {{f.email}}</ion-label><br>
-            <ion-label>Active: $ {{f.active}}</ion-label><br>
-            <ion-label>Admin: $ {{f.admin}}</ion-label><br>
+            <ion-label>Franchisee ID: {{f.franchiseeId}}</ion-label> <br>
+            <ion-label>Email:  {{f.email}}</ion-label><br>
+            <ion-label>Active:  {{f.active}}</ion-label><br>
+            <ion-label>Admin:  {{f.admin}}</ion-label><br>
             <br>
             </strong>
-            <ion-button (click)="selectFranchiseeToEdit(f)" color="success">Modify Franchisee</ion-button>
+            <ion-button (click)="selectFranchiseeToEdit(f)">Modify Franchisee</ion-button>
           </ion-card-content>
         </ion-card>
       </div>    

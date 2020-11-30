@@ -40,7 +40,7 @@ export class DisableFranchiseePage implements OnInit {
   disableUser(username) {
     this.adminService.disableUser(username)
     .subscribe((data) => {
-      console.log("user diabled");
+      
     }, (err: HttpErrorResponse) => {
       console.log(err.message);
     })
@@ -61,7 +61,7 @@ export class DisableFranchiseePage implements OnInit {
     const alert = await this.alertCtrl.create({
       header: 'Success',
       subHeader: '',
-      message: 'Franchisee Added',
+      message: 'Franchisee Account Disabled',
       buttons: [
         {
           text: 'OK',
@@ -82,7 +82,7 @@ export class DisableFranchiseePage implements OnInit {
       buttons: [
         {
           text: 'OK',
-          handler: () => { console.log('Confirm OK!'); }
+          handler: () => {  }
         }]
     });
     await alert.present();

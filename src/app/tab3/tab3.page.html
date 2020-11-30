@@ -2,14 +2,18 @@
 
   <ion-content [fullscreen]="true">
     <ion-card class="basicInputForm">
-      <br><ion-card-title style="text-align: center;"><strong>Admin Dashboard</strong></ion-card-title><br>
+      
     </ion-card>  
     <ion-card class="basicInputForm"><br>
+      <ion-card-title style="text-align: center;"><strong>Admin Dashboard</strong></ion-card-title><br>
+      <hr style="background-color:darkslategray; width: 80%; height: 2px;">
+      <br>
       <ion-card-title style="text-align: center;"><strong>Settings</strong></ion-card-title>
       <ion-card-content>
         <ion-button (click)="addUser()">Add User / Franchisee</ion-button>
         <ion-button (click)="viewFranchisees()">View Franchisees</ion-button>
         <ion-button (click)="disableUser()">Disable Franchisee</ion-button>
+        <ion-button (click)="deleteQuote()">Delete Quote</ion-button>
       </ion-card-content>
     </ion-card>  
   </ion-content>

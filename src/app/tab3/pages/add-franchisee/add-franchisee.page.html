@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header style="opacity: 1;">
   <ion-toolbar>
-    <ion-title>Add Franchisee</ion-title>
+    <ion-title><b>Add Franchisee</b></ion-title>
       <ion-buttons slot="start">
         <ion-back-button></ion-back-button>
       </ion-buttons>
@@ -8,11 +8,9 @@
 </ion-header>
 
   <ion-content [fullscreen]="true">
-    <ion-card class="basicInputForm">
-      <br><ion-card-title style="text-align: center;"><strong>Add Franchisee</strong></ion-card-title><br>
-    </ion-card>  
     <ion-card class="basicInputForm"><br>
       <ion-card-content>
+       <ion-card-title style="text-align: center;"><strong>Add Franchisee</strong></ion-card-title><br>
         <ion-list>
           <ion-item>
             <ion-label>Name:</ion-label>
@@ -41,14 +39,18 @@
           <br>
           <ion-item>
             <ion-label>Admin:</ion-label>
-              <ion-item>
-                <ion-label>Yes</ion-label>
+              
+                <label class="container">Yes
                 <input type="radio" name="administrator" slot="start" [(ngModel)]="isAdmin" value="yes">
-              </ion-item>
-              <ion-item>
-                <ion-label>No</ion-label>
+                <span class="checkmark"></span>
+                </label>
+              
+              
+                <label class="container">No
                 <input type="radio" name="administrator" slot="start" [(ngModel)]="isAdmin" value="no" checked>
-              </ion-item>
+                <span class="checkmark"></span>
+                </label>
+              
           </ion-item>
           <br>
           <ion-button (click)="onSubmit()">Submit</ion-button>

@@ -21,7 +21,14 @@ export class NodejsService {
   }
 
   retrieveAll(params) {
-    console.log("params", params);
-    return this.http.get('http://127.0.0.1:8887/quotes/getAll/', {params});
+    
+    return this.http.get('http://127.0.0.1:8887/quotes/', {params});
+  }
+  retrieveAllWithNoID() {
+    return this.http.get('http://127.0.0.1:8887/quotes/getAllNoID/');
+  }
+
+  deleteQuote(params) {
+    return this.http.delete('http://127.0.0.1:8887/quotes/deleteQuote/', { params });
   }
 }

@@ -67,7 +67,7 @@ export class Tab2Page {
       buttons: [
         {
           text: 'OK',
-          handler: () => { console.log('Confirm OK!'); }
+          handler: () => {  }
         }]
     });
     await alert.present();

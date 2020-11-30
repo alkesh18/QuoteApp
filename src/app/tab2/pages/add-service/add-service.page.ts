@@ -77,7 +77,7 @@ export class AddServicePage implements OnInit {
       buttons: [
         {
           text: 'OK',
-          handler: () => { console.log('Confirm OK!'); }
+          handler: () => { }
         }]
     });
     await alert.present();

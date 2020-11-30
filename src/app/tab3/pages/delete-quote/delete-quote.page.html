@@ -1,12 +1,13 @@
 <ion-header style="opacity: 1;">
   <ion-toolbar>
-    <ion-title style="margin-top: 20px ;"><b>Quote History</b></ion-title>
+    <ion-title style="margin-top: 20px ;"><b>Delete Quote</b></ion-title>
       <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
       </ion-buttons>&nbsp;
       <ion-buttons slot="end">
         <!-- <ion-button (click)="getAllFranchisees()" style="background-color: blue;" slot="end">Refresh</ion-button> -->
         <div>
-          <ion-icon (click)="spinnerFunction(user)" name="reload-outline" style="margin-right: 20px; width: 30px; height: 30px;"></ion-icon>
+          <ion-icon (click)="spinnerFunction()" name="reload-outline" style="margin-right: 20px; width: 30px; height: 30px;"></ion-icon>
           <ion-spinner name="dots" *ngIf="show" style="margin-right: 30px;"></ion-spinner>
         </div>
         
@@ -26,7 +27,7 @@
           <ion-label>Total: $ {{q.total}}</ion-label><br>
           <br>
           </strong>
-          <ion-button (click)="selectQuoteToEdit(q)" color="success">Modify Client</ion-button>
+          <ion-button (click)="deleteOneQuote(q)" >Delete Quote</ion-button>
         </ion-card-content>
       </ion-card>
     </div>    

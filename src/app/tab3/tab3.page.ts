@@ -26,5 +26,8 @@ export class Tab3Page {
   viewFranchisees() {
     this.router.navigate(['/','view-franchisees']);
   }
+  deleteQuote() {
+    this.router.navigate(['/','delete-quote']);
+  }
 
 }

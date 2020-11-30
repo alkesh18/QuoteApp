@@ -4,6 +4,7 @@ import { NodejsService } from '../services/nodejs.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { LoginServiceService } from '../services/login-service.service';
 import { User } from '../interfaces/user';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -16,24 +17,39 @@ export class Tab1Page {
   selServices: String;
   user: User;
 
+  show = false;
+  spinner(){
+    this.show = true
+    setTimeout(() => {
+      this.show = false;
+    }, 1500 ); 
+  }
+
+  spinnerFunction(data: any){
+    this.viewQuoteHistory(data);
+    this.spinner();
+  }
+
   constructor(private node: NodejsService, private router: Router, private auth: LoginServiceService) {
     this.user = JSON.parse(this.auth.getUserInfo());
-    console.log("constructor", this.user);
+    
     this.viewQuoteHistory(this.user);
    }
 
   ngOnInit() {
     this.user = JSON.parse(this.auth.getUserInfo());
-    console.log("oninit", this.user);
+    
     this.viewQuoteHistory(this.user);
   }
 
   viewQuoteHistory(user) {
+    
+    
     const params = {franchiseeId: user.franchiseeId}
     this.node.retrieveAll(params)
     .subscribe((data) => {
         this.QuoteInfo = Object.values(data);
-        console.log(this.QuoteInfo);
+      
       },
         (err: HttpErrorResponse) => {
           console.log(err.message);
@@ -46,4 +62,10 @@ export class Tab1Page {
     this.router.navigate(['modify-client'], naviExtras);
   }
 
+
+  
+
 }
+
+
+
